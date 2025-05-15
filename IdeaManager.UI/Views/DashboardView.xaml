@@ -8,7 +8,28 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="DashboardView">
 
-    <Grid>
-        
-    </Grid>
+<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="70*"/>
+        </Grid.RowDefinitions>
+        <Frame Name="DashFrame"
+        Width="800" Height="400"
+        NavigationUIVisibility="Hidden"
+        Grid.Row="1"/>
+    
+        <StackPanel Orientation="Horizontal">
+
+            <Button Content="Voir la liste des idées"
+                Width="200" Height="30"
+                Margin="0,0,0,30"
+                Click="NavigateToIdeaList"/>
+
+        <Button Content="Soumettre une idée"
+                Margin="0,0,0,30"
+                Width="200" Height="30"
+                Click="NavigateToIdeaForm"/>
+    </StackPanel>
+    
+</Grid>
 </Page>

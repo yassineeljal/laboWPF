@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using IdeaManager.Core.Interfaces;
+using IdeaManager.UI.ViewModels;
 
 namespace IdeaManager.UI.Views
 {
@@ -20,9 +22,24 @@ namespace IdeaManager.UI.Views
     /// </summary>
     public partial class DashboardView : Page
     {
-        public DashboardView()
+        private readonly IUnitOfWork _unitOfWork;
+
+        public DashboardView(IUnitOfWork unitOfWork)
         {
             InitializeComponent();
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+        }
+
+        private void NavigateToIdeaList(object sender, RoutedEventArgs e)
+        {
+            DashFrame.Navigate(new IdeaListView());
+        }
+
+        private void NavigateToIdeaForm(object sender, RoutedEventArgs e)
+        {
+            var ideaService = new IdeaService(_unitOfWork);
+            var viewModel = new IdeaFormViewModel(ideaService);
+            DashFrame.Navigate(new IdeaFormView(viewModel));
         }
     }
 }

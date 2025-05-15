@@ -4,11 +4,32 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:IdeaManager.UI.Views"
+      xmlns:viewModel="clr-namespace:IdeaManager.UI.ViewModels"
+      xmlns:Converter="clr-namespace:IdeaManager.UI.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="IdeaFormView">
+    <Page.Resources>
+        <Converter:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
+    </Page.Resources>
 
     <Grid>
-        
+        <StackPanel Margin="20" Width="400">
+            <TextBlock Text="Soumettre une idée" FontSize="20" Margin="0 0 0 15" />
+
+            <TextBlock Text="Titre :" />
+            <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBlock Text="Description :" Margin="0 15 0 0"/>
+            <TextBox Text="{Binding Description}" Height="80" />
+
+            <Button Content="Soumettre"
+                Command="{Binding SubmitCommand}"
+                Margin="0 20 0 0" Height="40"/>
+
+            <TextBlock Text="{Binding Confirmation}" Foreground="Red" FontSize="11" Margin="20 0 0 0" Visibility="{Binding Confirmation, Converter={StaticResource StringToVisibilityConverter}}"/>
+        </StackPanel>
+
+
     </Grid>
 </Page>

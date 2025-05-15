@@ -8,6 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using IdeaManager.Core.Interfaces;
+using IdeaManager.UI.Views;
 
 namespace IdeaManager.UI;
 
@@ -16,8 +18,17 @@ namespace IdeaManager.UI;
 /// </summary>
 public partial class MainWindow : Window
 {
-    public MainWindow()
+    private readonly IUnitOfWork _unitOfWork;
+
+    public MainWindow(IUnitOfWork unitOfWork)
     {
         InitializeComponent();
+        _unitOfWork = unitOfWork;
+    }
+
+    private void Enter_Click(object sender, RoutedEventArgs e)
+    {
+        Main.Navigate(new DashboardView(_unitOfWork));
+        button.Visibility = Visibility.Collapsed;
     }
 }
