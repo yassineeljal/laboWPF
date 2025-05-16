@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using IdeaManager.Core.Entities;
 using IdeaManager.Core.Interfaces;
 
 namespace IdeaManager.UI.ViewModels
 {
-    public class IdeaListViewModel: ObservableObject
+    public partial class IdeaListViewModel: ObservableObject
     {
         private readonly IIdeaService _ideaService;
         public ObservableCollection<Idea> Ideas { get; set; } = new ObservableCollection<Idea>();
@@ -18,9 +19,10 @@ namespace IdeaManager.UI.ViewModels
         public IdeaListViewModel(IIdeaService ideaService)
         {
             _ideaService = ideaService;
-            LoadIdeas();
         }
-        private async void LoadIdeas()
+
+        [RelayCommand]
+        private async Task LoadIdeas()
         {
             var ideas = await _ideaService.GetAllAsync();
             Ideas.Clear();

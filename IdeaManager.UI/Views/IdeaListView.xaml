@@ -9,7 +9,12 @@
       Title="IdeaListView">
 
     <Grid>
-        <DataGrid ItemsSource="{Binding Ideas}" AutoGenerateColumns="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <DataGrid ItemsSource="{Binding Ideas}" AutoGenerateColumns="False" Margin="5" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
@@ -21,5 +26,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
+        <Button Content="Charger les idées" Command="{Binding LoadIdeasCommand}" Margin="5" Height="30" HorizontalAlignment="Right" Width="150"/>
     </Grid>
+
 </Page>
