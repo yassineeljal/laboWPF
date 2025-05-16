@@ -11,7 +11,8 @@ namespace IdeaManager.Data.Db
         public DbSet<Idea> Ideas => Set<Idea>();
         public DbSet<User> Users => Set<User>();
         public DbSet<Vote> Votes => Set<Vote>();
-
+        protected override void OnConfiguring(DbContextOptionsBuilder options) =>
+    options.UseSqlite("Data Source=idea.db");
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new IdeaConfiguration());
@@ -19,6 +20,7 @@ namespace IdeaManager.Data.Db
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new VoteConfiguration());
         }
+
     }
 }
 

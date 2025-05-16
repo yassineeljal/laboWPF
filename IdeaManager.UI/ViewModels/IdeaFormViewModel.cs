@@ -29,7 +29,7 @@ namespace IdeaManager.UI.ViewModels
         [ObservableProperty]
         private string description;
 
-        [RelayCommand]
+        [RelayCommand(CanExecute = nameof(_canSubmit))]
         private async Task SubmitAsync()
         {
             MessageBox.Show("Soumission de l'idée");

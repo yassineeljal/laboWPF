@@ -18,7 +18,7 @@
             <TextBlock Text="Soumettre une idée" FontSize="20" Margin="0 0 0 15" />
 
             <TextBlock Text="Titre :" />
-            <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged, NotifyOnTargetUpdated=True}" />
 
             <TextBlock Text="Description :" Margin="0 15 0 0"/>
             <TextBox Text="{Binding Description}" Height="80" />
