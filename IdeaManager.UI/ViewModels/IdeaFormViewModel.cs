@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using IdeaManager.Core.Entities;
@@ -23,7 +18,9 @@ namespace IdeaManager.UI.ViewModels
         [ObservableProperty]
         private string confirmation;
 
+        //https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/generators/relaycommand
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(SubmitCommand))]
         private string title;
 
         [ObservableProperty]
@@ -32,7 +29,6 @@ namespace IdeaManager.UI.ViewModels
         [RelayCommand(CanExecute = nameof(_canSubmit))]
         private async Task SubmitAsync()
         {
-            MessageBox.Show("Soumission de l'idée");
             try
             {
                 var idea = new Idea
@@ -42,18 +38,26 @@ namespace IdeaManager.UI.ViewModels
                 };
 
                 await _ideaService.SubmitIdeaAsync(idea);
-                confirmation = "Idée envoyée";
+                Confirmation = "Idée envoyée";
+
             }
             catch (Exception ex)
             {
-                confirmation = string.Empty;
-                MessageBox.Show("dada");
+                Confirmation = string.Empty;
+                MessageBox.Show("Erreur");
             }
         }
 
-        private bool _canSubmit()
+        public bool _canSubmit()
         {
-            return !string.IsNullOrWhiteSpace(Title);
+            if(string.IsNullOrWhiteSpace(Title))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

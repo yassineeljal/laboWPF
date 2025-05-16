@@ -9,6 +9,17 @@
       Title="IdeaListView">
 
     <Grid>
-        
+        <DataGrid ItemsSource="{Binding Ideas}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="CreatedAt" Binding="{Binding CreatedAt}"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
+                <DataGridTextColumn Header="VoteCount" Binding="{Binding VoteCount}"/>
+                <DataGridTextColumn Header="ProjectId" Binding="{Binding ProjectId}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Page>

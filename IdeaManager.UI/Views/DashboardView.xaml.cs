@@ -32,7 +32,9 @@ namespace IdeaManager.UI.Views
 
         private void NavigateToIdeaList(object sender, RoutedEventArgs e)
         {
-            DashFrame.Navigate(new IdeaListView());
+            var ideaService = new IdeaService(_unitOfWork);
+            var viewModel = new IdeaListViewModel(ideaService);
+            DashFrame.Navigate(new IdeaListView(viewModel));
         }
 
         private void NavigateToIdeaForm(object sender, RoutedEventArgs e)

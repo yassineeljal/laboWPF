@@ -27,7 +27,7 @@
                 Command="{Binding SubmitCommand}"
                 Margin="0 20 0 0" Height="40"/>
 
-            <TextBlock Text="{Binding Confirmation}" Foreground="Red" FontSize="11" Margin="20 0 0 0" Visibility="{Binding Confirmation, Converter={StaticResource StringToVisibilityConverter}}"/>
+            <TextBlock Text="{Binding Confirmation}" Foreground="Green" FontSize="15" Margin="20 0 0 0" Visibility="{Binding Confirmation, Converter={StaticResource StringToVisibilityConverter}}"/>
         </StackPanel>
 
 
